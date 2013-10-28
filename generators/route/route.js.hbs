@@ -1,0 +1,5 @@
+App = require('app');
+
+module.exports = App.{{#camelize}}{{name}}{{/camelize}}Route = Ember.Route.extend({
+  model: function() {}
+});

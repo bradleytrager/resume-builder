@@ -1,0 +1,30 @@
+{
+  "author": "Bradley Trager",
+  "name": "EmberBrunch",
+  "description": "Ember Brunch skeleton with javascript, sass and foundation",
+  "version": "0.0.1",
+  "homepage": "",
+  "repository": {
+    "type": "git",
+    "url": ""
+    },
+    "engines": {
+      "node": "~0.6.10 || 0.8 || 0.9"
+      },
+      "scripts": {
+        "start": "brunch watch --server"
+        },
+        "dependencies": {
+          "javascript-brunch": "~1.5.1",
+          "coffee-script-brunch": ">= 1.0 < 1.6",
+          "css-brunch": ">= 1.0 < 1.6",
+          "uglify-js-brunch": ">= 1.0 < 1.6",
+          "clean-css-brunch": ">= 1.0 < 1.6",
+          "auto-reload-brunch": ">= 1.0 < 1.6",
+          "ember-handlebars-brunch": "git+ssh://git@github.com:bradleytrager/ember-handlebars-brunch.git",
+          "less-brunch": "git+ssh://git@github.com:brunch/less-brunch.git"
+          },
+          "devDependencies": {
+            "karma": "0.8.1"
+          }
+        }

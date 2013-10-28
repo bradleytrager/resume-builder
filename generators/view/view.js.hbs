@@ -1,0 +1,7 @@
+var App;
+
+App = require('app');
+
+module.exports = App.{{#camelize}}{{name}}{{/camelize}}View = Ember.View.extend({
+	templateName: '{{name}}'
+});
