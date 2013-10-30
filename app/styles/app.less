@@ -3,24 +3,31 @@
 @gray:                   lighten(#000, 33.5%); // #555
 @gray-light:             lighten(#000, 60%);   // #999
 @gray-lighter:           lighten(#000, 93.5%); // #eee
-body{
-}
+
 header{
-	
 	border-bottom:1px solid @gray-light;
-}
+	padding: 20px 0;
+	.title, .name{
+		margin-top: 0;
+	}
+	.summary{
+		font-weight: bold;
+	}
+} 
+
 section{
-border-bottom:1px solid @gray-lighter;
-}
-header .summary, .item-headline, .item-date{
-	font-weight: bold;
+	border-bottom:1px solid @gray-lighter;
+	padding: 20px 0;
+	.section-title{
+		font-size:20px;
+	}
+	.item-headline, .item-date{
+		font-weight: bold;
+	}
 }
 
-section .section-title{
-	font-size:20px;
-}
 @media print {
-  a[href]:after {
-    content: none !important;
-  }
+	a[href]:after {
+		content: none !important;
+	}
 }
