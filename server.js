@@ -1,39 +1,71 @@
 var express = require('express'),
-app = express();
+  app = express();
 app.use(express.bodyParser());
 
-var ARTICLES = [
-{
-  id: 1,
-  title: 'How to write a JavaScript Framework',
-  author: 'Tomhuda Katzdale',
-  body: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-},
-{
-  id: 2,
-  title: 'Chronicles of an Embereño',
-  author: 'Alerik Bryneer',
-  body: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-},
-{
-  id: 3,
-  title: 'The Eyes of Thomas',
-  author: 'Yehuda Katz',
-  body: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-}
-];
+var RESUME = {
+  name: 'Bradley Trager',
+  title: 'Web Developer',
+  sections: [{
+    title: 'Experience',
+    items: [{
+      title: "Senior Web Developer",
+      location: "Team Detroit",
+      date: "September 2013-present",
+      details: ["Web Developer specializing in single-page web applications (SPA) and content management systems (CMS) using several back-end technologies including php, asp.net, java, ruby and nodejs."]
+    }, {
+      title: "Senior Web Developer",
+      location: "SoftFinity",
+      date: "October 2012-present",
+      details: ["Develop single page JavaScript web applications with various javscript frameworks",
+        "Develop solutions for storage, analysis and visualization of big data",
+        "Write articles about web development that have attracted over 24,000 unique visitors to our blog",
+        "Mentoring Intern Software Developer"
+      ]
+    }, {
+      title: "C++ Programmer",
+      location: "Cornell University",
+      date: "August 2005- May 2007",
+      details: ["Created finite-element simulations using C++ and MatLab"]
+    }]
+  }, {
+    title: 'Education',
+    items: [{
+      title: "Master of Engineering in Applied Physics",
+      location: "Cornell University, College of Engineering",
+      date: "August 2002 - May 2007"
+    }, {
+      title: "Bachelor of Religious Studies",
+      location: "Rabbinical College of America, Mayanot Institute",
+      date: "June 2007 - January 2012"
+    }]
+  }, {
+    title: "Skills",
+    items: [{
+      title: "Javascript",
+      details: ["jQuery, jQuery UI, jQuery Mobile, Knockout.js, Ember.js, Backbone.js, Angular.js"]
+    }, {
 
-var PHOTOS = [
-{ id: 1, src: "images/potd.png" },
-{ id: 2, src: "images/yohuda.jpg" },
-{ id: 3, src: "images/easter.jpg" }
-];
+      title: "Content Management Systems",
+      details: ["Concrete5, Wordpress, Magento"]
+    }, {
 
-// No-brainer auth: server will authenticate with
-// username "ember" and password "casts", respond
-// with a token, and forget the token when restarted.
+      title: "Server Side Scripting",
+      details: ["PHP, ASP.NET MVC, C#, Java, Node.js, Ruby"]
+    }, {
 
-var currentToken;
+      title: "Databases",
+      details: ["MySQL, SQL Server, Oracle, MongoDB"]
+    }, {
+
+      title: "CSS",
+      details: ["Sass, Less, Compass, Bootstrap, Zurb Foundation"]
+    }, {
+
+      title: "Tools",
+      details: ["Git, SVN, Google Webmaster Tools, Google Analytics, Jira, Photoshop"]
+    }]
+  }]
+};
 
 app.all('/', function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -41,59 +73,11 @@ app.all('/', function(req, res, next) {
   next();
 });
 
-app.post('/auth.json', function(req, res) {
+app.get('/resume.json', function(req, res) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  var body = req.body,
-  username = body.username,
-  password = body.password;
-
-  if (username == 'ember' && password == 'casts') {
-    // Generate and save the token (forgotten upon server restart).
-    currentToken = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    res.send({
-      success: true,
-      token: currentToken
-    });
-  } else {
-    res.send({
-      success: false,
-      message: 'Invalid username/password'
-    });
-  }
+  res.send(RESUME);
 });
-
-function validTokenProvided(req, res) {
-
-  // Check POST, GET, and headers for supplied token.
-  var userToken = req.body.token || req.param('token') || req.headers.token;
-
-  if (!currentToken || userToken != currentToken) {
-    res.send(401, { error: 'Invalid token. You provided: ' + userToken });
-    return false;
-  }
-
-  return true;
-}
-
-app.get('/articles.json', function(req, res) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  if (validTokenProvided(req, res)) {
-    res.send(ARTICLES);
-  }
-});
-
-// Returns URL to pic of the day.
-app.get('/photos.json', function(req, res) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  if (validTokenProvided(req, res)) {
-    res.send(PHOTOS);
-  }
-});
-
-
 
 app.use(express.static(__dirname + '/public'));
 

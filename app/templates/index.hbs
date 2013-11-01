@@ -1,8 +1,8 @@
 <header>
 	<div class="row">
 		<div class="col-xs-8 colums headline">
-			<h1 class="name">{{App.Resume.name}}</h1>
-			<h2 class="title text-muted">{{App.Resume.title}}</h2>
+			<h1 class="name">{{name}}</h1>
+			<h2 class="title text-muted">{{title}}</h2>
 		</div>
 		<div class="col-xs-4 colums contact-info">
 			<p class="email"><a href="mailto:btrager@softfinity.com">btrager@softfinity.com</a><br/>
@@ -20,7 +20,7 @@
 		</div>
 	</div>
 </header>
-{{#each section in App.Resume.sections}}
+{{#each section in sections}}
 <section>
 	<div class="row">
 		<div class="col-xs-2 colums">
