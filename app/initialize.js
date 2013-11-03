@@ -24,7 +24,7 @@ App.Store = DS.Store.extend({
 
 // ===== Controllers =====
 
-//require('controllers/IndexController');
+require('controllers/IndexController');
 // ===== Template Helpers =====
 Swag.registerHelpers();
 

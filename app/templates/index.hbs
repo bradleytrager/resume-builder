@@ -1,7 +1,14 @@
 <header>
 	<div class="row">
 		<div class="col-xs-8 colums headline">
-			<h1 class="name">{{name}}</h1>
+			<h1 {{action "edit" on="doubleClick"}}class="name">
+				{{#if isEditing}}
+				{{input type="text" value=name}}
+				<button {{action "doneEditing"}}class="btn">Done</button>
+				{{else}}
+				{{name}}
+				{{/if}}
+				</h1>
 			<h2 class="title text-muted">{{title}}</h2>
 		</div>
 		<div class="col-xs-4 colums contact-info">
