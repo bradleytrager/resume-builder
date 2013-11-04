@@ -2,7 +2,7 @@ var App;
 
 App = require('app');
 
-module.exports = App.IndexController = Ember.ObjectController.extend({
+module.exports = App.ResumeController = Ember.ObjectController.extend({
 	isEditing: false,
 	actions: {
 		edit: function() {
@@ -10,9 +10,9 @@ module.exports = App.IndexController = Ember.ObjectController.extend({
 		},
 		doneEditing: function() {
 			this.set('isEditing', false);
-			var model = this.get('model');
-			console.log(model);
-			model.save();
+			var resume = this.get('model');
+			console.log(resume);
+			resume.save();
 		}
 	}
 

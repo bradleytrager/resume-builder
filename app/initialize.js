@@ -5,26 +5,32 @@ App = require('app');
 
 // ===== Router =====
 App.Router.map(function() {
-
+	this.resource('resumes', function() {
+    this.resource('resume', { path: ':resume_id' });
+  });
 });
 
 // ===== Routes =====
 require('routes/IndexRoute');
-
+require('routes/ResumesRoute');
 
 // ===== Store =====
 App.Store = DS.Store.extend({
-	revision: 13,
-	adapter: 'DS.FixtureAdapter'
+  
 });
-
+App.ApplicationAdapter = DS.RESTAdapter.extend({
+	host: "http://localhost:3000"
+});
 // ===== Models =====
-
+require('models/Resume');
 // ===== Views =====
 
 // ===== Controllers =====
 
-require('controllers/IndexController');
+//require('controllers/IndexController');
+
+//require('controllers/ResumesController');
+require('controllers/ResumeController');
 // ===== Template Helpers =====
 Swag.registerHelpers();
 
@@ -33,3 +39,5 @@ Swag.registerHelpers();
 
 require('templates/application');
 require('templates/index');
+require('templates/resumes');
+require('templates/resume');
