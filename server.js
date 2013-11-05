@@ -88,7 +88,22 @@ app.get('/resumes', function(req, res) {
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   res.send({resumes: [RESUME] });
 });
+app.get('/resumes/:id', function(req, res) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  res.send({resumes: [RESUME] });
+});
+app.post('/resumes', function(req, res) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  res.send({request: "hi" });
+});
 
+app.put('/resumes/:id', function(req, res) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  res.send({request: "put" });
+});
 app.use(express.static(__dirname + '/public'));
 
 app.listen(3000);
