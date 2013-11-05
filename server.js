@@ -1,6 +1,7 @@
 var express = require('express'),
   app = express();
 app.use(express.bodyParser());
+var fs = require('fs');
 
 var RESUME = {
   id: 1,
@@ -102,6 +103,16 @@ app.post('/resumes', function(req, res) {
 app.put('/resumes/:id', function(req, res) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  var resume = req.body.resume;
+  resume.id = req.params.id;
+  fs.writeFile("test.json", JSON.stringify(resume), function(err) {
+    if(err) {
+        console.log(err);
+    } else {
+        console.log("The file was saved!");
+    }
+    console.log(req.body);
+}); 
   res.send({request: "put" });
 });
 app.use(express.static(__dirname + '/public'));

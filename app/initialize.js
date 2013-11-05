@@ -18,7 +18,9 @@ require('routes/ResumesRoute');
 App.Store = DS.Store.extend({
   
 });
-
+//App.ApplicationAdapter = DS.RESTAdapter.extend({
+ //  host: "http://localhost:3000"
+ //});
 // ===== Models =====
 require('models/Resume');
 // ===== Views =====
