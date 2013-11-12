@@ -15,5 +15,4 @@ module.exports = App.ResumeController = Ember.ObjectController.extend({
 			resume.save();
 		}
 	}
-
 });

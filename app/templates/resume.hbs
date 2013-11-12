@@ -1,3 +1,4 @@
+
 <header>
 	<div class="row">
 		<div class="col-xs-8 colums headline">
@@ -20,6 +21,7 @@
 			</p>
 		</div>
 	</div>
+	
 	<div class="row">
 		<div class="col-xs-12 colums">
 			<p class="summary">￼Web Developer specializing in single-page web applications (SPA) and content management systems (CMS) using several back-end technologies including php, asp.net, java, ruby and nodejs.
@@ -27,3 +29,12 @@
 		</div>
 	</div>
 </header>
+{{#each sections}}
+<section>
+	<div class="row">
+		<div class="col-xs-2 colums">
+			<h2 class="section-title">{{title}}</h2>
+		</div>
+	</div>
+</section>
+{{/each}}

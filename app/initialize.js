@@ -22,7 +22,10 @@ App.Store = DS.Store.extend({
  //  host: "http://localhost:3000"
  //});
 // ===== Models =====
+
 require('models/Resume');
+require('models/Section');
+
 // ===== Views =====
 
 // ===== Controllers =====
@@ -31,6 +34,7 @@ require('models/Resume');
 
 //require('controllers/ResumesController');
 require('controllers/ResumeController');
+//require('controllers/SectionController');
 // ===== Template Helpers =====
 Swag.registerHelpers();
 
