@@ -25,6 +25,8 @@ App.Store = DS.Store.extend({
 
 require('models/Resume');
 require('models/Section');
+require('models/Item');
+//require('models/Detail');
 
 // ===== Views =====
 
@@ -34,7 +36,7 @@ require('models/Section');
 
 //require('controllers/ResumesController');
 require('controllers/ResumeController');
-//require('controllers/SectionController');
+require('controllers/SectionController');
 // ===== Template Helpers =====
 Swag.registerHelpers();
 
@@ -45,3 +47,4 @@ require('templates/application');
 require('templates/index');
 require('templates/resumes');
 require('templates/resume');
+//require('templates/sections');

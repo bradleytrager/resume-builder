@@ -4,37 +4,80 @@
 		<div class="col-xs-8 colums headline">
 			<h1 {{action "edit" on="doubleClick"}}class="name">
 				{{#if isEditing}}
-					{{input type="text" value=name}}
-					<button {{action "doneEditing"}}class="btn">Done</button>
+				{{input type="text" value=name}}
+				<button {{action "doneEditing"}}class="btn">Done</button>
 				{{else}}
-					{{name}}
+				{{name}}
 				{{/if}}
-				</h1>
-			<h2 class="title text-muted">{{title}}</h2>
+			</h1>
+			<h2 class="title text-muted">
+				{{#if isEditing}}
+				{{input type="text" value=title}}
+				<button {{action "doneEditing"}}class="btn">Done</button>
+				{{else}}
+				{{title}}
+				{{/if}}
+				
+			</h2>
 		</div>
 		<div class="col-xs-4 colums contact-info">
 			<p class="email"><a href="mailto:btrager@softfinity.com">btrager@softfinity.com</a><br/>
 				<a href="http://www.softfinity.com">http://www.softfinity.com</a></p>
-			<p class="phone">516-456-1277</p>
-			<p class="address">6665 Endinborough Dr <br/>
-				West Bloomfield, MI 48322
-			</p>
+				<p class="phone">516-456-1277</p>
+				<p class="address">6665 Endinborough Dr <br/>
+					West Bloomfield, MI 48322
+				</p>
+			</div>
 		</div>
-	</div>
-	
-	<div class="row">
-		<div class="col-xs-12 colums">
-			<p class="summary">￼Web Developer specializing in single-page web applications (SPA) and content management systems (CMS) using several back-end technologies including php, asp.net, java, ruby and nodejs.
-			</p>
+
+		<div class="row">
+			<div class="col-xs-12 colums">
+				<p class="summary">￼Web Developer specializing in single-page web applications (SPA) and content management systems (CMS) using several back-end technologies including php, asp.net, java, ruby and nodejs.
+				</p>
+			</div>
 		</div>
-	</div>
-</header>
-{{#each sections}}
-<section>
-	<div class="row">
-		<div class="col-xs-2 colums">
-			<h2 class="section-title">{{title}}</h2>
+		<div class="row">
+			<div class="col-xs-12 colums">
+				<button {{action "createSection"}}class="btn">Add Section</button>
+			</div>
+		</div>	
+	</header>
+	{{#each sections itemController="section"}}
+	<section>
+		<div class="row">
+			<div class="col-xs-2 colums">
+				<h2 class="section-title" {{action "edit" on="doubleClick"}}>
+					{{#if isEditing}}
+					{{input type="text" value=title}}
+					<button {{action "doneEditing"}}class="btn">Done</button>
+					{{else}}
+					{{title}}
+					{{/if}}
+				</h2>
+			</div>
+			{{#each items}}
+			<div class="col-xs-10 colums pull-right clearfix item">
+				<div class="row">
+					<div class="col-xs-12 colums item-headline">
+						{{title}}
+					</div>
+					<div class="col-xs-12 colums item-location">
+						{{location}}
+					</div>
+					<div class="col-xs-12 colums item-date" style="text-align:right;">
+						{{date}}
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 colums item-details">
+						<ul>{{#each detail in details}}
+							<li>{{ detail }}</li>
+							{{/each}}
+						</ul>
+					</div>
+				</div>
+			</div>
+			{{/each}}
 		</div>
-	</div>
-</section>
-{{/each}}
+	</section>
+	{{/each}}
